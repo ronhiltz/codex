@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h2>Account: {{ username }}</h2>
+  {% if accounts %}
+    <ul>
+    {% for acct in accounts %}
+      <li>{{ acct.database_name }} - {{ acct.password }}{% if acct.dblink_name %} ({{ acct.dblink_name }}){% endif %} {{ acct.account_type }}</li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>No databases found for this account.</p>
+  {% endif %}
+  <p><a href="{{ url_for('accounts') }}">Back to Accounts</a></p>
+{% endblock %}

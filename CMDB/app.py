@@ -31,7 +31,6 @@ def create_app():
                 environment=request.form.get("environment"),
                 db_type=request.form.get("db_type"),
                 version=request.form.get("version"),
-                dblink_name=request.form.get("dblink_name"),
                 description=request.form.get("description"),
             )
             db.session.add(data)
@@ -48,6 +47,7 @@ def create_app():
                 username=request.form["username"],
                 password=request.form["password"],
                 account_type=request.form.get("account_type"),
+                dblink_name=request.form.get("dblink_name"),
                 description=request.form.get("description"),
                 database=database,
             )
@@ -56,6 +56,20 @@ def create_app():
             return redirect(url_for("database_detail", name=name))
         return render_template("database_detail.html", database=database)
 
+
+    @app.route("/accounts")
+    def accounts():
+        """List distinct account usernames."""
+        usernames = [row[0] for row in db.session.query(Account.username).distinct().all()]
+        return render_template("accounts.html", usernames=usernames)
+
+    @app.route("/accounts/<string:username>")
+    def account_detail(username):
+        """Show databases where the specified account exists."""
+        accounts = Account.query.filter_by(username=username).all()
+        return render_template("account_detail.html", username=username, accounts=accounts)
+
+=
     return app
 
 

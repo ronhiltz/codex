@@ -17,7 +17,6 @@ class Database(db.Model):
     environment = db.Column(db.String(64))
     db_type = db.Column(db.String(64))
     version = db.Column(db.String(64))
-    dblink_name = db.Column(db.String(128))
     description = db.Column(db.Text)
 
 
@@ -30,6 +29,7 @@ class Account(db.Model):
     username = db.Column(db.String(128), nullable=False)
     password = db.Column(db.String(128), nullable=False)
     account_type = db.Column(db.String(64))
+    dblink_name = db.Column(db.String(128))
     description = db.Column(db.Text)
 
     # Foreign key constraint referencing Database.name
