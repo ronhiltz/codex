@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <p><a href="{{ url_for('new_database') }}">Add Database</a></p>
+  {% if databases %}
+    <ul>
+    {% for db in databases %}
+      <li><a href="{{ url_for('database_detail', name=db.name) }}">{{ db.name }}</a> ({{ db.environment }})</li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>No databases have been added yet.</p>
+  {% endif %}
+{% endblock %}
