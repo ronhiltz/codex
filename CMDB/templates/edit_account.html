@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h2>Edit Account for {{ database.name }}</h2>
+  <form method="post">
+    <label>Username: <input type="text" name="username" value="{{ account.username }}" required></label><br>
+    <label>Password: <input type="password" name="password" value="{{ account.password }}" required></label><br>
+    <label>Account Type: <input type="text" name="account_type" value="{{ account.account_type }}"></label><br>
+    <label>DB Link: <input type="text" name="dblink_name" value="{{ account.dblink_name }}"></label><br>
+    <label>Description:<br><textarea name="description">{{ account.description }}</textarea></label><br>
+    <button type="submit">Update</button>
+  </form>
+  <p><a href="{{ url_for('database_detail', name=database.name) }}">Back</a></p>
+{% endblock %}

@@ -4,7 +4,8 @@ A lightweight configuration management database (CMDB) for storing database
 
 instances and their associated accounts. Databases and account entries can be
 browsed via a small web UI that also exposes a per-account view to see which
-databases use a given credential.
+databases use a given credential. Entries can be edited or removed directly
+from the interface.
 
 
 ## Usage
