@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h2>{{ database.name }}</h2>
+  <p><strong>Environment:</strong> {{ database.environment }}</p>
+  <p><strong>Type:</strong> {{ database.db_type }}</p>
+  <p><strong>Version:</strong> {{ database.version }}</p>
+  <p><strong>Description:</strong> {{ database.description }}</p>
+
+  <p>
+    <a href="{{ url_for('edit_database', name=database.name) }}">Edit Database</a>
+    |
+    <form method="post" action="{{ url_for('delete_database', name=database.name) }}" style="display:inline" onsubmit="return confirm('Delete this database?');">
+      <button type="submit">Delete Database</button>
+    </form>
+  </p>
+
+  <h3>Accounts</h3>
+  {% if database.accounts %}
+    <ul>
+    {% for acct in database.accounts %}
+      <li>
+        {{ acct.username }} / {{ acct.password }} ({{ acct.account_type }}){% if acct.dblink_name %} - {{ acct.dblink_name }}{% endif %}
+        <a href="{{ url_for('edit_account', database_name=database.name, account_id=acct.id) }}">Edit</a>
+        <form method="post" action="{{ url_for('delete_account', database_name=database.name, account_id=acct.id) }}" style="display:inline" onsubmit="return confirm('Delete this account?');">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>No accounts for this database.</p>
+  {% endif %}
+
+  <h3>Add Account</h3>
+  <form method="post">
+    <label>Username: <input type="text" name="username" required></label><br>
+    <label>Password: <input type="password" name="password" required></label><br>
+    <label>Account Type: <input type="text" name="account_type"></label><br>
+    <label>DB Link: <input type="text" name="dblink_name"></label><br>
+    <label>Description:<br><textarea name="description"></textarea></label><br>
+    <button type="submit">Add Account</button>
+  </form>
+  <p><a href="{{ url_for('index') }}">Back</a></p>
+{% endblock %}
