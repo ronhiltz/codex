@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h2>Accounts</h2>
+  {% if usernames %}
+    <ul>
+    {% for name in usernames %}
+      <li><a href="{{ url_for('account_detail', username=name) }}">{{ name }}</a></li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>No accounts have been added yet.</p>
+  {% endif %}
+{% endblock %}

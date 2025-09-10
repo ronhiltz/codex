@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CMDB</title>
+  </head>
+  <body>
+    <h1>Configuration Management Database</h1>
+    <nav>
+      <a href="{{ url_for('index') }}">Databases</a> |
+      <a href="{{ url_for('accounts') }}">Accounts</a>
+    </nav>
+    {% block content %}{% endblock %}
+  </body>
+</html>
