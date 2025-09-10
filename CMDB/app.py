@@ -69,7 +69,6 @@ def create_app():
         accounts = Account.query.filter_by(username=username).all()
         return render_template("account_detail.html", username=username, accounts=accounts)
 
-=
     return app
 
 
