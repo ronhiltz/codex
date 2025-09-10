@@ -56,6 +56,7 @@ def create_app():
             return redirect(url_for("database_detail", name=name))
         return render_template("database_detail.html", database=database)
 
+
     @app.route("/accounts")
     def accounts():
         """List distinct account usernames."""
@@ -68,6 +69,7 @@ def create_app():
         accounts = Account.query.filter_by(username=username).all()
         return render_template("account_detail.html", username=username, accounts=accounts)
 
+=
     return app
 
 
