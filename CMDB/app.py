@@ -56,6 +56,7 @@ def create_app():
             return redirect(url_for("database_detail", name=name))
         return render_template("database_detail.html", database=database)
 
+
     @app.route("/database/<string:name>/edit", methods=["GET", "POST"])
     def edit_database(name):
         """Edit metadata for an existing database."""
@@ -107,6 +108,7 @@ def create_app():
         db.session.delete(account)
         db.session.commit()
         return redirect(url_for("database_detail", name=database_name))
+
 
     @app.route("/accounts")
     def accounts():

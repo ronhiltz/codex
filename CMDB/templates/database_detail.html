@@ -7,6 +7,7 @@
   <p><strong>Version:</strong> {{ database.version }}</p>
   <p><strong>Description:</strong> {{ database.description }}</p>
 
+
   <p>
     <a href="{{ url_for('edit_database', name=database.name) }}">Edit Database</a>
     |
@@ -19,6 +20,7 @@
   {% if database.accounts %}
     <ul>
     {% for acct in database.accounts %}
+
       <li>
         {{ acct.username }} / {{ acct.password }} ({{ acct.account_type }}){% if acct.dblink_name %} - {{ acct.dblink_name }}{% endif %}
         <a href="{{ url_for('edit_account', database_name=database.name, account_id=acct.id) }}">Edit</a>
@@ -26,6 +28,7 @@
           <button type="submit">Delete</button>
         </form>
       </li>
+
     {% endfor %}
     </ul>
   {% else %}
