@@ -5,11 +5,18 @@
     <title>CMDB</title>
   </head>
   <body>
-    <h1>Configuration Management Database</h1>
-    <nav>
-      <a href="{{ url_for('index') }}">Databases</a> |
-      <a href="{{ url_for('accounts') }}">Accounts</a>
-    </nav>
+    <header style="display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <h1>Configuration Management Database</h1>
+        <nav>
+          <a href="{{ url_for('index') }}">Databases</a> |
+          <a href="{{ url_for('accounts') }}">Accounts</a>
+        </nav>
+      </div>
+      <div style="text-align: right; font-weight: bold;">
+        {{ current_date }}
+      </div>
+    </header>
     {% block content %}{% endblock %}
   </body>
 </html>

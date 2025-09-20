@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import Flask, render_template, request, redirect, url_for
 from models import db, Database, Account
 
@@ -15,6 +17,11 @@ def create_app():
     db.init_app(app)
     with app.app_context():
         db.create_all()
+
+    @app.context_processor
+    def inject_current_date():
+        """Provide current date for templates."""
+        return {"current_date": datetime.now().strftime("%B %d, %Y")}
 
     @app.route("/")
     def index():
